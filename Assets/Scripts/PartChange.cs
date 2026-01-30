@@ -1,37 +1,49 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PartChange : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject mask;
+    [SerializeField] private PartMask mask;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        ChangePartType(mask.GetComponent<Mask>().maskColor);
-    }
+    [SerializeField] private Transform upEmpty;
+    [SerializeField] private Transform midEmpty;
+    [SerializeField] private Transform downEmpty;
 
-    // Update is called once per frame
-    void Update()
+    public void MaskButtonAction(string color)
     {
-        
-    }
+        if (mask == null)
+        {
+            Debug.LogError("MASK COMPONENT ES NULL", this);
+            return;
+        }
 
-    public void ChangePartType(string maskColor)
-    {
-        switch(maskColor)
+        switch (color)
         {
             case "red":
-                Debug.Log("Color rojo");
-                break;
-            case "blue":
-                Debug.Log("Color azul");
-                break;
-            case "green":
-                Debug.Log("Color verde");
+                ChangePart(mask.upPart, mask.midPart, mask.downPart);
                 break;
         }
+    }
+
+    public void ChangePart(GameObject upPart, GameObject midPart, GameObject downPart)
+    {
+        foreach (Transform child in upEmpty)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in midEmpty)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in downEmpty)
+        {
+            Destroy(child.gameObject);
+        }
+
+        Instantiate(upPart, upEmpty).transform.localPosition = Vector3.zero;
+        Instantiate(midPart, midEmpty).transform.localPosition = Vector3.zero;
+        Instantiate(downPart, downEmpty).transform.localPosition = Vector3.zero;
     }
 }
