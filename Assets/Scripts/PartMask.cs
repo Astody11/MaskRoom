@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,7 @@ public class PartMask : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddButtonToInventory(color);
+        AddButtonToInventory();
     }
 
     // Update is called once per frame
@@ -36,10 +37,11 @@ public class PartMask : MonoBehaviour
         
     }
 
-    public void AddButtonToInventory(string bColor)
+    public void AddButtonToInventory()
     {
         // 1️⃣ Instanciar el botón
         Button newButton = Instantiate(maskButton, inventory);
+
 
         // 2️⃣ Limpiar listeners del prefab
         newButton.onClick.RemoveAllListeners();
@@ -61,7 +63,19 @@ public class PartMask : MonoBehaviour
         }
 
         // 5️⃣ Asignar el onClick dinámicamente
-        newButton.onClick.AddListener(() => partChange.MaskButtonAction(bColor));
+        newButton.onClick.AddListener(() => partChange.MaskButtonAction(GetComponent<PartMask>()));
+
+
+        // Cambiar texto del botón
+        TMP_Text text = newButton.GetComponentInChildren<TMP_Text>();
+        if (text != null)
+        {
+            text.text = color;
+        }
+        else
+        {
+            Debug.LogError("El botón no tiene TMP_Text");
+        }
     }
 
 
