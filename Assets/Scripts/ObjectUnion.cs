@@ -9,7 +9,7 @@ public class ObjectUnion : MonoBehaviour
     public GameObject middleSection;
     public GameObject downSection;
 
-    private string currentMask = "";
+    private string puzzleMask = "white";
     RoomSectionMovement roomSectionMovement;
 
     //WHITE MASK PUZZLE
@@ -25,7 +25,6 @@ public class ObjectUnion : MonoBehaviour
     void Start()
     {
         roomSectionMovement = GetComponent<RoomSectionMovement>();
-        currentMask = gameObject.name;
     }
 
     
@@ -34,21 +33,22 @@ public class ObjectUnion : MonoBehaviour
         
     }
 
-    public void CurrentMaskName(string currentMaskName)
-    {
-        currentMask = currentMaskName;
-    }
     public void WhiteMaskPuzzle()
     {
-        if (roomSectionMovement.upAngle == 0 &&
-                    roomSectionMovement.middleAngle == 90 &&
-                    roomSectionMovement.downAngle == 180)
+        if (
+            roomSectionMovement.upAngle == 0 &&
+            roomSectionMovement.middleAngle == 90 &&
+            roomSectionMovement.downAngle == 180)
         {
             topCuadro.SetActive(false);
             midCuadro.SetActive(false);
             botCuadro.SetActive(false);
             fullCuadro.SetActive(true);
             //if(fullCuadro.)
+            Debug.Log("CUADRO ALINEADO");
+
+            //Puzzle resuelto, se asigna nuevo color
+            puzzleMask = "dog";
         }
         else
         {
@@ -58,12 +58,25 @@ public class ObjectUnion : MonoBehaviour
 
     public void CurrentMaskPuzzle()
     {
-        switch(currentMask)
+        switch(puzzleMask)
         {
             case "white":
                 WhiteMaskPuzzle();
-                
                 break;
+        }
+    }
+
+    public bool VerifyColor(string upColor, string midColor, string downColor)
+    {
+        if (upColor == upSection.GetComponent<EachSectionManager>().color && 
+            midColor == middleSection.GetComponent<EachSectionManager>().color && 
+            downColor == downSection.GetComponent<EachSectionManager>().color)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

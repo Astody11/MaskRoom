@@ -11,39 +11,65 @@ public class PartChange : MonoBehaviour
     [SerializeField] private Transform midEmpty;
     [SerializeField] private Transform downEmpty;
 
-    public void MaskButtonAction(string color)
+    public void MaskButtonAction(PartMask currentMask)
     {
+        mask = currentMask;
+
         if (mask == null)
         {
             Debug.LogError("MASK COMPONENT ES NULL", this);
             return;
         }
 
-        switch (color)
-        {
-            case "red":
-                ChangePart(mask.upPart, mask.midPart, mask.downPart);
-                break;
-        }
+
+        ChangePart(mask.upPart, mask.midPart, mask.downPart);
+        AssignPartsColor(currentMask);
+
     }
 
     public void ChangePart(GameObject upPart, GameObject midPart, GameObject downPart)
     {
-        foreach (Transform child in upEmpty)
+        if (upEmpty.GetComponent<EachSectionManager>().isLocked == false)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in upEmpty)
+            {
+                Destroy(child.gameObject);
+            }
+
+            Instantiate(upPart, upEmpty).transform.localPosition = Vector3.zero;
+
         }
-        foreach (Transform child in midEmpty)
+        if (midEmpty.GetComponent<EachSectionManager>().isLocked == false)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in midEmpty)
+            {
+                Destroy(child.gameObject);
+            }
+
+            Instantiate(midPart, midEmpty).transform.localPosition = Vector3.zero;
         }
-        foreach (Transform child in downEmpty)
+        if (downEmpty.GetComponent<EachSectionManager>().isLocked == false)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in downEmpty)
+            {
+                Destroy(child.gameObject);
+            }
+
+            Instantiate(downPart, downEmpty).transform.localPosition = Vector3.zero;
         }
 
-        Instantiate(upPart, upEmpty).transform.localPosition = Vector3.zero;
-        Instantiate(midPart, midEmpty).transform.localPosition = Vector3.zero;
-        Instantiate(downPart, downEmpty).transform.localPosition = Vector3.zero;
+    }
+
+    private void AssignPartsColor(PartMask currentMask)
+    {
+        upEmpty.GetComponent<EachSectionManager>().color = !upEmpty.GetComponent<EachSectionManager>().isLocked ?
+            currentMask.color : upEmpty.GetComponent<EachSectionManager>().color;
+
+        midEmpty.GetComponent<EachSectionManager>().color = !midEmpty.GetComponent<EachSectionManager>().isLocked ?
+            currentMask.color : midEmpty.GetComponent<EachSectionManager>().color;
+
+        downEmpty.GetComponent<EachSectionManager>().color = !downEmpty.GetComponent<EachSectionManager>().isLocked ?
+            currentMask.color : downEmpty.GetComponent<EachSectionManager>().color;
+
     }
 }
