@@ -21,9 +21,10 @@ public class PartChange : MonoBehaviour
             return;
         }
 
-
         ChangePart(mask.upPart, mask.midPart, mask.downPart);
         AssignPartsColor(currentMask);
+
+        currentMask.GetComponent<MaskEffects>().EffectSelection(currentMask.color);
 
     }
 

@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 4768189231201964082}
   - component: {fileID: 3684443476687988464}
   m_Layer: 5
-  m_Name: YellowMaskButton
+  m_Name: DogMaskButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

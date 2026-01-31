@@ -35,7 +35,7 @@ public class ObjectUnion : MonoBehaviour
 
     public void WhiteMaskPuzzle()
     {
-        if (
+        if (VerifyColor("white", "white", "white") &&
             roomSectionMovement.upAngle == 0 &&
             roomSectionMovement.middleAngle == 90 &&
             roomSectionMovement.downAngle == 180)
