@@ -11,51 +11,39 @@ public class PartChange : MonoBehaviour
     [SerializeField] private Transform midEmpty;
     [SerializeField] private Transform downEmpty;
 
-    public void MaskButtonAction(PartMask currentMask)
+    public void MaskButtonAction(string color)
     {
-        mask = currentMask;
-
         if (mask == null)
         {
             Debug.LogError("MASK COMPONENT ES NULL", this);
             return;
         }
 
-        
-        ChangePart(mask.upPart, mask.midPart, mask.downPart);
-        
+        switch (color)
+        {
+            case "red":
+                ChangePart(mask.upPart, mask.midPart, mask.downPart);
+                break;
+        }
     }
 
     public void ChangePart(GameObject upPart, GameObject midPart, GameObject downPart)
     {
-        if (upEmpty.GetComponent<EachSectionManager>().isLocked == false)
+        foreach (Transform child in upEmpty)
         {
-            foreach (Transform child in upEmpty)
-            {
-                Destroy(child.gameObject);
-            }
-
-            Instantiate(upPart, upEmpty).transform.localPosition = Vector3.zero;
-
+            Destroy(child.gameObject);
         }
-        if (midEmpty.GetComponent<EachSectionManager>().isLocked == false)
+        foreach (Transform child in midEmpty)
         {
-            foreach (Transform child in midEmpty)
-            {
-                Destroy(child.gameObject);
-            }
-
-            Instantiate(midPart, midEmpty).transform.localPosition = Vector3.zero;
+            Destroy(child.gameObject);
         }
-        if (downEmpty.GetComponent<EachSectionManager>().isLocked == false)
+        foreach (Transform child in downEmpty)
         {
-            foreach (Transform child in downEmpty)
-            {
-                Destroy(child.gameObject);
-            }
-
-            Instantiate(downPart, downEmpty).transform.localPosition = Vector3.zero;
+            Destroy(child.gameObject);
         }
-        
+
+        Instantiate(upPart, upEmpty).transform.localPosition = Vector3.zero;
+        Instantiate(midPart, midEmpty).transform.localPosition = Vector3.zero;
+        Instantiate(downPart, downEmpty).transform.localPosition = Vector3.zero;
     }
 }
