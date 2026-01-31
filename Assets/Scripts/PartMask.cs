@@ -54,6 +54,7 @@ public class PartMask : MonoBehaviour
 
         // 4️⃣ Obtener el script PartChange del GameManager
         PartChange partChange = gm.GetComponent<PartChange>();
+        ObjectUnion objectUnion = gm.GetComponent<ObjectUnion>();
         if (partChange == null)
         {
             Debug.LogError("GameManager no tiene el script PartChange!");
@@ -61,7 +62,10 @@ public class PartMask : MonoBehaviour
         }
 
         // 5️⃣ Asignar el onClick dinámicamente
-        newButton.onClick.AddListener(() => partChange.MaskButtonAction(bColor));
+        newButton.onClick.AddListener(() => { 
+            partChange.MaskButtonAction(bColor);
+            objectUnion.CurrentMaskName(bColor);
+        });
     }
 
 
