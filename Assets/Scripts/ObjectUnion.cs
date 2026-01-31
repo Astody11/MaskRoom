@@ -40,6 +40,11 @@ public class ObjectUnion : MonoBehaviour
             roomSectionMovement.middleAngle == 90 &&
             roomSectionMovement.downAngle == 180)
         {
+            //Asignaciones
+            topCuadro = GameObject.Find("LVL1-Cuadro1");
+            midCuadro = GameObject.Find("LVL1-Cuadro2");
+            botCuadro = GameObject.Find("LVL1-Cuadro3");
+
             topCuadro.SetActive(false);
             midCuadro.SetActive(false);
             botCuadro.SetActive(false);
