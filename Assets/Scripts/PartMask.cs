@@ -56,6 +56,7 @@ public class PartMask : MonoBehaviour
 
         // 4️⃣ Obtener el script PartChange del GameManager
         PartChange partChange = gm.GetComponent<PartChange>();
+        ObjectUnion objectUnion = gm.GetComponent<ObjectUnion>();
         if (partChange == null)
         {
             Debug.LogError("GameManager no tiene el script PartChange!");
