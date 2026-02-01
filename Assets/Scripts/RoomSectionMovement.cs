@@ -46,13 +46,11 @@ public class RoomSectionMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) && !isRotating)
         {
             RoomRotation(-90);
-            objectUnion.CurrentMaskPuzzle();
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && !isRotating)
         {
             RoomRotation(90);
-            objectUnion.CurrentMaskPuzzle();
         }
 
         FixBtnSelection();
@@ -124,6 +122,7 @@ public class RoomSectionMovement : MonoBehaviour
 
         section.rotation = endRotation;
         isRotating = false;
+        objectUnion.CurrentMaskPuzzle();
     }
 
     public void roomSectionStringChanged(string sectionName)
