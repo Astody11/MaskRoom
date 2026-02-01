@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameOverScreen.unity
     guid: dc2d2159798d88e46921cd94aee3e912
+  - enabled: 1
+    path: Assets/WinScreen.unity
+    guid: c8a034ac73a694d4e8fc797ae2e4fdaf
   m_configObjects: {}
