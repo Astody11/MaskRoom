@@ -60,6 +60,8 @@ public class InGameMaskAnimation : MonoBehaviour
         } else
         {
 
+            
+
             transform.localPosition += new Vector3(0f, 0f, -1f * Time.deltaTime);
             if(tRotate > 0f)
             {
@@ -69,7 +71,8 @@ public class InGameMaskAnimation : MonoBehaviour
 
             if (tRotate < 0f)
             {
-                Destroy(gameObject);
+                GetComponent<PartMask>().AddButtonToInventory(GetComponent<PartMask>().color);
+                gameObject.SetActive(false);
             }
         }
 

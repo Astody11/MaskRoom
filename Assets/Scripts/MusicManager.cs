@@ -13,7 +13,7 @@ public class MusicManager : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float volume = 0.5f;
 
-    private AudioClip currentClip;
+    public AudioClip currentClip;
 
     void Awake()
     {

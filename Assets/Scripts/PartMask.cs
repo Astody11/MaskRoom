@@ -28,9 +28,13 @@ public class PartMask : MonoBehaviour
     [SerializeField]
     private AudioClip maskSong;
 
+    private GameObject GameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        GameManager = GameObject.FindGameObjectWithTag("GameManager");
+        inventory = GameObject.FindGameObjectWithTag("Inventory").transform;
         if (maskIsCaught)
         {
             AddButtonToInventory(color);
@@ -45,6 +49,8 @@ public class PartMask : MonoBehaviour
 
     public void AddButtonToInventory(string bColor)
     {
+        ChangeSong();
+
         // 1️⃣ Instanciar el botón
         Button newButton = Instantiate(maskButton, inventory);
 
@@ -84,5 +90,9 @@ public class PartMask : MonoBehaviour
         }
     }
 
-
+    public void ChangeSong()
+    {
+        GameManager.GetComponent<MusicManager>().currentClip = maskSong;
+        GameManager.GetComponent<MusicManager>().PlayMusic(maskSong);
+    }
 }
