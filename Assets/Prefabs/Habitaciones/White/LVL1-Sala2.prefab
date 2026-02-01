@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 1644087697920889450}
   - component: {fileID: 2235983795964961383}
   - component: {fileID: 8902753012842957547}
+  - component: {fileID: 6647590468638766572}
+  - component: {fileID: 5866501914920071354}
   m_Layer: 0
   m_Name: DogMaskObject
   m_TagString: Untagged
@@ -204,6 +206,45 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2560160645807420564, guid: 064ed7c04823aa940bda03b3c18ef9ed, type: 3}
+--- !u!114 &6647590468638766572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856354749022977102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b19583b591f6d4ca5b5467ba5ee77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maskButton: {fileID: 3684443476687988464, guid: 1cdc3fde7fd3cd540ba2312ffd6d4d57, type: 3}
+  inventory: {fileID: 0}
+  upPart: {fileID: 802150262775398756, guid: de15752e2e0518f46823b16b8587f96f, type: 3}
+  midPart: {fileID: 2946936415669280291, guid: e390bcac1c5565f44b66bc13bb2c84f2, type: 3}
+  downPart: {fileID: 7968808801040833753, guid: 323753bf8de943c49aaead62b385c412, type: 3}
+  color: dog
+  maskIsCaught: 0
+  maskSong: {fileID: 0}
+--- !u!114 &5866501914920071354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856354749022977102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2d5e3dd85f3a84aa66d3ba51481872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerVision: {fileID: 0}
+  upParticles: {fileID: 0}
+  midParticles: {fileID: 0}
+  downParticles: {fileID: 0}
+  barra: {fileID: 0}
+  duracionBarra: 30
+  escenaACargar: 
 --- !u!1 &5691698795558427465
 GameObject:
   m_ObjectHideFlags: 0

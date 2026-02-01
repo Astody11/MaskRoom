@@ -20461,6 +20461,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866501914920071354, guid: 98c79a1a49fa3c747b0a24ccf458de8d, type: 3}
+      propertyPath: barra
+      value: 
+      objectReference: {fileID: 538433843}
+    - target: {fileID: 5866501914920071354, guid: 98c79a1a49fa3c747b0a24ccf458de8d, type: 3}
+      propertyPath: upParticles
+      value: 
+      objectReference: {fileID: 624591154}
+    - target: {fileID: 5866501914920071354, guid: 98c79a1a49fa3c747b0a24ccf458de8d, type: 3}
+      propertyPath: midParticles
+      value: 
+      objectReference: {fileID: 1883013086}
+    - target: {fileID: 5866501914920071354, guid: 98c79a1a49fa3c747b0a24ccf458de8d, type: 3}
+      propertyPath: playerVision
+      value: 
+      objectReference: {fileID: 157185186}
+    - target: {fileID: 5866501914920071354, guid: 98c79a1a49fa3c747b0a24ccf458de8d, type: 3}
+      propertyPath: downParticles
+      value: 
+      objectReference: {fileID: 725264973}
     - target: {fileID: 6508139219549638803, guid: 98c79a1a49fa3c747b0a24ccf458de8d, type: 3}
       propertyPath: m_Name
       value: LVL1-Sala2
@@ -20469,6 +20489,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6647590468638766572, guid: 98c79a1a49fa3c747b0a24ccf458de8d, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 861604886}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
