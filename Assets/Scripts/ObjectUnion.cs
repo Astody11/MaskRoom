@@ -70,6 +70,9 @@ public class ObjectUnion : MonoBehaviour
             case "white":
                 WhiteMaskPuzzle();
                 break;
+            case "dog":
+                WhiteMaskPuzzle();
+                break;
         }
     }
 
