@@ -25,10 +25,19 @@ public class PartMask : MonoBehaviour
     [SerializeField]
     public string color;
 
+    [SerializeField]
+    public bool maskIsCaught;
+
+    [SerializeField]
+    private AudioClip maskSong;
+
     // Start is called before the first frame update
     void Start()
     {
-        AddButtonToInventory(color);
+        if (maskIsCaught)
+        {
+            AddButtonToInventory(color);
+        } 
     }
 
     // Update is called once per frame
@@ -70,7 +79,7 @@ public class PartMask : MonoBehaviour
         TMP_Text text = newButton.GetComponentInChildren<TMP_Text>();
         if (text != null)
         {
-            text.text = color;
+            text.text = "";
         }
         else
         {
