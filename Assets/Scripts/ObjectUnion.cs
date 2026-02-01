@@ -45,9 +45,12 @@ public class ObjectUnion : MonoBehaviour
             midCuadro = GameObject.Find("LVL1-Cuadro2");
             botCuadro = GameObject.Find("LVL1-Cuadro3");
 
-            StartCoroutine(MoveCuadro(topCuadro.transform, 100, 1.5f));
-            StartCoroutine(MoveCuadro(midCuadro.transform, 100, 1.5f));
-            StartCoroutine(MoveCuadro(botCuadro.transform, 100, 1.5f));
+            //if(!roomSectionMovement.isRotating)
+            //{
+                StartCoroutine(MoveCuadro(topCuadro.transform, -1, 1.5f));
+                StartCoroutine(MoveCuadro(midCuadro.transform, -1, 1.5f));
+                StartCoroutine(MoveCuadro(botCuadro.transform, -1, 1.5f));
+            //}
 
             Debug.Log("CUADRO ALINEADO");
 
