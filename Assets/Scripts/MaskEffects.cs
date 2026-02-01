@@ -125,7 +125,7 @@ public class MaskEffects : MonoBehaviour
 
     void CambiarEscena()
     {
-        SceneManager.LoadScene(escenaACargar);
+        SceneManager.LoadScene("GameOverScreen");
     }
 }
 
