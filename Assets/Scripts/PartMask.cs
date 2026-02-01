@@ -13,9 +13,6 @@ public class PartMask : MonoBehaviour
     public Transform inventory;
 
     [SerializeField]
-    private GameObject GameController;
-
-    [SerializeField]
     public GameObject upPart;
     [SerializeField]
     public GameObject midPart;
