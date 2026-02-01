@@ -69,7 +69,8 @@ public class MaskAnimation : MonoBehaviour
 
             if (tRotate < 0f)
             {
-                SceneManager.LoadScene("MaskRoom_Alex");
+                //SceneManager.LoadScene("MaskRoom_Alex");
+                SceneManager.LoadScene("MaskRoom_Ines");
             }
         }
 

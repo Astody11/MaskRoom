@@ -6,7 +6,7 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
 
-    [Header("Audio")]
+    //[Header("Audio")]
     [SerializeField] private AudioSource musicSource;
 
     [Header("Settings")]
