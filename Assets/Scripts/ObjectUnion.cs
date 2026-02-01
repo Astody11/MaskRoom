@@ -13,13 +13,15 @@ public class ObjectUnion : MonoBehaviour
     private string puzzleMask = "white";
     RoomSectionMovement roomSectionMovement;
 
+    private int dogPuzleSteps = 0;
+
     //WHITE MASK PUZZLE
-    [SerializeField]
     private GameObject topCuadro;
-    [SerializeField]
     private GameObject midCuadro;
-    [SerializeField]
     private GameObject botCuadro;
+
+    //DOG MASK PUZZLE
+
     
 
     void Start()
@@ -33,12 +35,96 @@ public class ObjectUnion : MonoBehaviour
         
     }
 
+    public void DogMaskPuzzle()
+    {
+        switch(dogPuzleSteps)
+        {
+            case 0:
+                if (VerifyColor("dog", "dog", "white") &&
+                    roomSectionMovement.upAngle == 0 &&
+                    roomSectionMovement.middleAngle == 90 &&
+                    roomSectionMovement.downAngle == 180)
+                {
+                    //Asignaciones
+                    topCuadro = GameObject.Find("LVL1-Percha2");
+                    midCuadro = GameObject.Find("LVL2-Planta1");
+
+
+
+                    StartCoroutine(MoveCuadro(topCuadro.transform, -1, 1.5f));
+                    StartCoroutine(MoveCuadro(midCuadro.transform, -1, 1.5f));
+                    StartCoroutine(MoveCuadro(botCuadro.transform, -1, 1.5f));
+
+
+                    Debug.Log("CUADRO ALINEADO");
+                    GameObject n1 = topCuadro = GameObject.Find("LVL2-Trozo1");
+                    n1.SetActive(false);
+
+                    dogPuzleSteps++;
+                }
+               
+                break;
+            case 1:
+                if (VerifyColor("dog", "dog", "white") &&
+                    roomSectionMovement.upAngle == 0 &&
+                    roomSectionMovement.middleAngle == 90 &&
+                    roomSectionMovement.downAngle == 180)
+                {
+                    //Asignaciones
+                    topCuadro = GameObject.Find("LVL1-Percha2");
+                    midCuadro = GameObject.Find("LVL2-Planta1");
+
+
+
+                    StartCoroutine(MoveCuadro(topCuadro.transform, -1, 1.5f));
+                    StartCoroutine(MoveCuadro(midCuadro.transform, -1, 1.5f));
+                    StartCoroutine(MoveCuadro(botCuadro.transform, -1, 1.5f));
+
+
+                    Debug.Log("CUADRO ALINEADO");
+
+                    dogPuzleSteps++;
+                }
+                break;
+
+            case 2:
+                if (VerifyColor("dog", "dog", "white") &&
+                    roomSectionMovement.upAngle == 0 &&
+                    roomSectionMovement.middleAngle == 90 &&
+                    roomSectionMovement.downAngle == 180)
+                {
+                    //Asignaciones
+                    topCuadro = GameObject.Find("LVL1-Percha2");
+                    midCuadro = GameObject.Find("LVL2-Planta1");
+
+
+
+                    StartCoroutine(MoveCuadro(topCuadro.transform, -1, 1.5f));
+                    StartCoroutine(MoveCuadro(midCuadro.transform, -1, 1.5f));
+                    StartCoroutine(MoveCuadro(botCuadro.transform, -1, 1.5f));
+
+
+                    Debug.Log("CUADRO ALINEADO");
+
+                    dogPuzleSteps++;
+                }
+                break;
+
+            case 3:
+                //Puzzle resuelto, se asigna nuevo color
+                puzzleMask = "clown";
+                break;
+        }
+        
+    }
+
     public void WhiteMaskPuzzle()
     {
         if (VerifyColor("white", "white", "white") &&
             roomSectionMovement.upAngle == 0 &&
             roomSectionMovement.middleAngle == 90 &&
-            roomSectionMovement.downAngle == 180)
+            roomSectionMovement.downAngle == 180 
+            && puzzleMask == "white")
         {
             //Asignaciones
             topCuadro = GameObject.Find("LVL1-Cuadro1");
@@ -57,10 +143,7 @@ public class ObjectUnion : MonoBehaviour
             //Puzzle resuelto, se asigna nuevo color
             puzzleMask = "dog";
         }
-        else
-        {
-            Debug.Log("YA NO PUEDES INTERACTUAR");
-        }
+        
     }
 
     public void CurrentMaskPuzzle()
@@ -71,7 +154,7 @@ public class ObjectUnion : MonoBehaviour
                 WhiteMaskPuzzle();
                 break;
             case "dog":
-                WhiteMaskPuzzle();
+                DogMaskPuzzle();
                 break;
         }
     }

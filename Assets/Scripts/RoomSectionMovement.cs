@@ -121,8 +121,8 @@ public class RoomSectionMovement : MonoBehaviour
         }
 
         section.rotation = endRotation;
-        isRotating = false;
         objectUnion.CurrentMaskPuzzle();
+        isRotating = false;
     }
 
     public void roomSectionStringChanged(string sectionName)
