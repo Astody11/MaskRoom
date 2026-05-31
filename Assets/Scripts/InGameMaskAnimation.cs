@@ -13,6 +13,7 @@ public class InGameMaskAnimation : MonoBehaviour
     private float tUp = 2f;
     private float tDown = 0;
     private float tRotate = 1.75f;
+    public bool lambMaskOn = false;
     //private float tGame = 1.75f;
 
     void OnMouseDown()
@@ -62,7 +63,7 @@ public class InGameMaskAnimation : MonoBehaviour
 
             
 
-            transform.localPosition += new Vector3(0f, 0f, -1f * Time.deltaTime);
+            transform.localPosition += new Vector3(0f, -1f * Time.deltaTime, 0f);
             if(tRotate > 0f)
             {
                 transform.Rotate(0f, 0f, 100f * Time.deltaTime);
@@ -71,8 +72,15 @@ public class InGameMaskAnimation : MonoBehaviour
 
             if (tRotate < 0f)
             {
-                GetComponent<PartMask>().AddButtonToInventory(GetComponent<PartMask>().color);
-                gameObject.SetActive(false);
+                if (!lambMaskOn)
+                {
+                    GetComponent<PartMask>().AddButtonToInventory(GetComponent<PartMask>().color);
+                    transform.localPosition += new Vector3(0f, -1f * Time.deltaTime, 0f);
+                    lambMaskOn = true;
+                } else
+                {
+
+                }
             }
         }
 

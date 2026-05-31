@@ -13,16 +13,20 @@ public class ObjectUnion : MonoBehaviour
     private string puzzleMask = "white";
     RoomSectionMovement roomSectionMovement;
 
-    private int dogPuzleSteps = 0;
-
     //WHITE MASK PUZZLE
     private GameObject topCuadro;
     private GameObject midCuadro;
     private GameObject botCuadro;
 
     //DOG MASK PUZZLE
+    public GameObject n1;
+    private GameObject n2;
+    private GameObject n3;
+    private int dogPuzleSteps = 0;
 
-    
+    private bool n1Revealed = false;
+    private bool n2Revealed = false;
+    private bool n3Revealed = false;
 
     void Start()
     {
@@ -32,90 +36,77 @@ public class ObjectUnion : MonoBehaviour
     
     void Update()
     {
-        
+        if (puzzleMask == "dog")
+        {
+            if (n1Revealed && GameObject.Find("LVL2-Trozo1"))
+            {
+                n1 = GameObject.Find("LVL2-Trozo1");
+                n1.SetActive(false);
+            }
+
+            if (n2Revealed && GameObject.Find("LVL2-Trozo2"))
+            {
+                n2 = GameObject.Find("LVL2-Trozo2");
+                n2.SetActive(false);
+            }
+
+            if (n3Revealed && GameObject.Find("LVL2-Trozo3"))
+            {
+                n3 = GameObject.Find("LVL2-Trozo3");
+                n3.SetActive(false);
+            }
+        }
+
     }
 
     public void DogMaskPuzzle()
     {
-        switch(dogPuzleSteps)
+        Debug.Log("COMPRUEBO DOG");
+
+        if (
+            (VerifyColor("dog", "dog", "white") || VerifyColor("white", "dog", "white")) &&
+            roomSectionMovement.middleAngle == 180 &&
+            roomSectionMovement.downAngle == 90 && !n1Revealed)
         {
-            case 0:
-                if (VerifyColor("dog", "dog", "white") &&
-                    roomSectionMovement.upAngle == 0 &&
-                    roomSectionMovement.middleAngle == 90 &&
-                    roomSectionMovement.downAngle == 180)
-                {
-                    //Asignaciones
-                    topCuadro = GameObject.Find("LVL1-Percha2");
-                    midCuadro = GameObject.Find("LVL2-Planta1");
-
-
-
-                    StartCoroutine(MoveCuadro(topCuadro.transform, -1, 1.5f));
-                    StartCoroutine(MoveCuadro(midCuadro.transform, -1, 1.5f));
-                    StartCoroutine(MoveCuadro(botCuadro.transform, -1, 1.5f));
-
-
-                    Debug.Log("CUADRO ALINEADO");
-                    GameObject n1 = topCuadro = GameObject.Find("LVL2-Trozo1");
-                    n1.SetActive(false);
-
-                    dogPuzleSteps++;
-                }
-               
-                break;
-            case 1:
-                if (VerifyColor("dog", "dog", "white") &&
-                    roomSectionMovement.upAngle == 0 &&
-                    roomSectionMovement.middleAngle == 90 &&
-                    roomSectionMovement.downAngle == 180)
-                {
-                    //Asignaciones
-                    topCuadro = GameObject.Find("LVL1-Percha2");
-                    midCuadro = GameObject.Find("LVL2-Planta1");
-
-
-
-                    StartCoroutine(MoveCuadro(topCuadro.transform, -1, 1.5f));
-                    StartCoroutine(MoveCuadro(midCuadro.transform, -1, 1.5f));
-                    StartCoroutine(MoveCuadro(botCuadro.transform, -1, 1.5f));
-
-
-                    Debug.Log("CUADRO ALINEADO");
-
-                    dogPuzleSteps++;
-                }
-                break;
-
-            case 2:
-                if (VerifyColor("dog", "dog", "white") &&
-                    roomSectionMovement.upAngle == 0 &&
-                    roomSectionMovement.middleAngle == 90 &&
-                    roomSectionMovement.downAngle == 180)
-                {
-                    //Asignaciones
-                    topCuadro = GameObject.Find("LVL1-Percha2");
-                    midCuadro = GameObject.Find("LVL2-Planta1");
-
-
-
-                    StartCoroutine(MoveCuadro(topCuadro.transform, -1, 1.5f));
-                    StartCoroutine(MoveCuadro(midCuadro.transform, -1, 1.5f));
-                    StartCoroutine(MoveCuadro(botCuadro.transform, -1, 1.5f));
-
-
-                    Debug.Log("CUADRO ALINEADO");
-
-                    dogPuzleSteps++;
-                }
-                break;
-
-            case 3:
-                //Puzzle resuelto, se asigna nuevo color
-                puzzleMask = "clown";
-                break;
+            
+            n1 = GameObject.Find("LVL2-Trozo1");
+            n1.SetActive(false);
+            dogPuzleSteps++;
+            n1Revealed = true;
+            Debug.Log("STEP 1 COMPLETADO");
         }
-        
+            
+        if ((VerifyColor("dog", "dog", "white") || VerifyColor("white", "dog", "white")) &&
+            roomSectionMovement.middleAngle == 90 &&
+            roomSectionMovement.downAngle == 270)
+        {
+            n2 = GameObject.Find("LVL2-Trozo2");
+            n2.SetActive(false);
+
+            dogPuzleSteps++;
+            n2Revealed = true;
+            Debug.Log("STEP 2 COMPLETADO");
+        }
+               
+
+        if ((VerifyColor("dog", "white", "dog") || VerifyColor("white", "white", "dog")) &&
+            roomSectionMovement.middleAngle == 90 &&
+            roomSectionMovement.downAngle == 180)
+        {
+            n3 = GameObject.Find("LVL2-Trozo3");
+            n3.SetActive(false);
+
+            dogPuzleSteps++;
+            n3Revealed = true;
+            Debug.Log("STEP 3 COMPLETADO");
+        }
+                
+        //Puzzle resuelto, se asigna nuevo color
+        if(dogPuzleSteps == 3)
+        {
+            puzzleMask = "clown";
+        }
+                
     }
 
     public void WhiteMaskPuzzle()
@@ -146,6 +137,11 @@ public class ObjectUnion : MonoBehaviour
         
     }
 
+    public void ClownMaskPuzzle()
+    {
+
+    }
+
     public void CurrentMaskPuzzle()
     {
         switch(puzzleMask)
@@ -155,6 +151,9 @@ public class ObjectUnion : MonoBehaviour
                 break;
             case "dog":
                 DogMaskPuzzle();
+                break;
+            case "clown":
+                ClownMaskPuzzle();
                 break;
         }
     }
